@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="/style.css"> <!-- <-- ADDED THIS LINE -->
+</head>
+<body>
+  <div class="container"> <!-- Added container for styling -->
+    <h2>Sign Up</h2>
+    <% if (message) { %>
+      <p class="error-message"><%= message %></p> <!-- Used CSS class instead of inline style -->
+    <% } %>
+    <form method="POST" action="/signup">
+      <label for="username">Username:</label> <!-- Added label for accessibility & styling -->
+      <input id="username" name="username" placeholder="Username" required/>
+      <label for="password">Password:</label> <!-- Added label for accessibility & styling -->
+      <input type="password" id="password" name="password" placeholder="Password" required/>
+      <label for="email">Email:</label> <!-- Added label for accessibility & styling -->
+      <input type="email" id="email" name="email" placeholder="Email" required/>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="/login">Login</a></p> <!-- Changed text to match login.ejs -->
+  </div>
+</body>
+</html>

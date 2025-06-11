@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/style.css"> <!-- Link to your common CSS -->
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <form action="/dashboard" method="GET" class="search-form">
+            <input type="text" name="search" placeholder="Search by username..." value="<%= typeof search !== 'undefined' ? search : '' %>">
+            <button type="submit">Search</button>
+        </form>
+        <% if (message) { %>
+            <p class="info-message"><%= message %></p>
+        <% } %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Admin</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (users.length > 0) { %>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.id %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.isAdmin ? 'Yes' : 'No' %></td>
+                            <td>
+                                <a href="/edit/<%= user.id %>">Edit</a> |
+                                <a href="/delete/<%= user.id %>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="5">No users found.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <p><a href="/logout">Admin Logout</a></p>
+    </div>
+</body>
+</html>
